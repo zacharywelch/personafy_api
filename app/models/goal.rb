@@ -1,17 +1,15 @@
 # == Schema Information
 #
-# Table name: personas
+# Table name: goals
 #
 #  id          :integer          not null, primary key
-#  name        :string
 #  description :string
-#  photo_url   :string
+#  persona_id  :integer
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 
-class Persona < ActiveRecord::Base
-  has_many :behaviors
-  has_many :goals
-  validates :name, presence: true
+class Goal < ActiveRecord::Base
+  belongs_to :persona
+  validates :description, presence: true
 end

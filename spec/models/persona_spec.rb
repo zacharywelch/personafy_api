@@ -13,15 +13,16 @@
 require 'rails_helper'
 
 describe Persona do
-  
+
   subject(:persona) { create :persona }
 
   it { should respond_to(:name) }
   it { should respond_to(:description) }
   it { should respond_to(:photo_url) }
   it { should respond_to(:behaviors) }
+  it { should respond_to(:goals) }
 
   it { should be_valid }
-  
+
   it { should validate_presence_of(:name) }
 end
