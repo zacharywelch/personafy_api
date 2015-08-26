@@ -28,14 +28,18 @@ class PersonasController < ApplicationController
 
   private
     def set_personas
-      @personas = Persona.where(persona_params).order(sort_by).page(params[:page])
+      @personas = Persona.where(filter_params).order(sort_by).page(params[:page])
     end
 
     def set_persona
       @persona = Persona.find(params[:id])
     end
 
-    def persona_params
+    def filter_params
       params.permit(:name, :description, :photo_url)
+    end
+
+    def persona_params
+      params.require(:persona).permit(:name, :description, :photo_url)
     end
 end

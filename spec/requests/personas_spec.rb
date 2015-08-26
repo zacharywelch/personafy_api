@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe "Personas API" do
   
-  let(:json) { JSON.parse(response.body) }
-    
   describe "GET /personas" do
     
+    let(:json) { JSON.parse(response.body)["personas"] }
+
     before do
       create_list :persona, 10
       get '/personas'
@@ -21,6 +21,8 @@ describe "Personas API" do
   it_has_behavior "pagination", "/personas", :persona
 
   describe "GET /personas/:id" do
+    
+    let(:json) { JSON.parse(response.body)["persona"] }
     
     let(:persona) do
       create :persona, name: "Foo", 
@@ -60,10 +62,15 @@ describe "Personas API" do
 
   describe "POST /personas" do
     
+    let(:json) { JSON.parse(response.body)["persona"] }
+    
     before do
-      post '/personas', name: "Foo", 
-                        description: "Lorem ipsum", 
-                        photo_url: "img.jpg"
+      post '/personas', 
+        persona: { 
+          name: "Foo", 
+          description: "Lorem ipsum", 
+          photo_url: "img.jpg" 
+        }
     end
 
     it "creates an persona" do
@@ -77,10 +84,12 @@ describe "Personas API" do
 
   describe "PUT /personas/:id" do
     
+    let(:json) { JSON.parse(response.body)["persona"] }    
     let(:persona) { create :persona, name: "Foo" }
 
     before do
-      put "/personas/#{persona.id}", name: "Bar"
+      put "/personas/#{persona.id}", 
+        persona: { name: "Bar" }
     end
 
     it "updates an persona" do
@@ -91,6 +100,7 @@ describe "Personas API" do
 
   describe "DELETE /personas/:id" do
     
+    let(:json) { JSON.parse(response.body)["persona"] }
     let(:persona) { create :persona }
     
     before do

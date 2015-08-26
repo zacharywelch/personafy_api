@@ -29,15 +29,19 @@ class BehaviorsController < ApplicationController
 
   private
     def set_behaviors
-      @behaviors = @persona.behaviors.where(behavior_params).order(sort_by).page(params[:page])
+      @behaviors = @persona.behaviors.where(filter_params).order(sort_by).page(params[:page])
     end
 
     def set_behavior
       @behavior = Behavior.find(params[:id])
     end
 
-    def behavior_params
+    def filter_params
       params.permit(:description, :persona_id)
+    end
+
+    def behavior_params
+      params.require(:behavior).permit(:description, :persona_id)
     end
 
     def set_persona

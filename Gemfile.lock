@@ -1,12 +1,4 @@
 GIT
-  remote: git@cagit.careerbuilder.com:zwelch/json_responder.git
-  revision: e5306e4ad8f5ab7d9ab77930652257f748d12706
-  specs:
-    json_responder (0.0.1)
-      rails (~> 4.0)
-      responders
-
-GIT
   remote: git@cagit.careerbuilder.com:zwelch/pagination_responder.git
   revision: fd53d202c18244cda16cfd550e25777c4e55d4d3
   specs:
@@ -174,7 +166,6 @@ DEPENDENCIES
   factory_girl_rails
   faker
   jbuilder
-  json_responder!
   kaminari
   newrelic_rpm
   pagination_responder!

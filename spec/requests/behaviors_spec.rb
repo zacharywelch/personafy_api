@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe "Behaviors" do
-let(:json) { JSON.parse(response.body) }
     
   describe "GET /personas/:id/behaviors" do
     
+    let(:json) { JSON.parse(response.body)["behaviors"] }
+
     let(:persona) do
       create :persona, behaviors: create_list(:behavior, 10)
     end
@@ -24,6 +25,8 @@ let(:json) { JSON.parse(response.body) }
 
   describe "GET /behaviors/:id" do
     
+    let(:json) { JSON.parse(response.body)["behavior"] }
+
     let(:behavior) do
       create :behavior, description: "Lorem ipsum"
     end
@@ -50,10 +53,12 @@ let(:json) { JSON.parse(response.body) }
 
   describe "POST /personas/:persona_id/behaviors" do
 
+    let(:json) { JSON.parse(response.body)["behavior"] }
     let(:persona) { create :persona }
     
     before do
-      post "/personas/#{persona.id}/behaviors", description: "Lorem ipsum"
+      post "/personas/#{persona.id}/behaviors", 
+        behavior: { description: "Lorem ipsum" }
     end
 
     it "creates an behavior" do
@@ -65,10 +70,12 @@ let(:json) { JSON.parse(response.body) }
 
   describe "PUT /behaviors/:id" do
     
+    let(:json) { JSON.parse(response.body)["behavior"] }
     let(:behavior) { create :behavior, description: "Foo" }
 
     before do
-      put "/behaviors/#{behavior.id}", description: "Bar"
+      put "/behaviors/#{behavior.id}", 
+        behavior: { description: "Bar" }
     end
 
     it "updates an behavior" do
