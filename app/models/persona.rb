@@ -11,5 +11,6 @@
 #
 
 class Persona < ActiveRecord::Base
+  has_many :behaviors
   validates :name, presence: true
 end

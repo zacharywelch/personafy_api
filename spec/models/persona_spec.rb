@@ -19,6 +19,7 @@ describe Persona do
   it { should respond_to(:name) }
   it { should respond_to(:description) }
   it { should respond_to(:photo_url) }
+  it { should respond_to(:behaviors) }
 
   it { should be_valid }
   
