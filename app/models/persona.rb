@@ -13,5 +13,9 @@
 class Persona < ActiveRecord::Base
   has_many :behaviors
   has_many :goals
+
+  accepts_nested_attributes_for :behaviors, allow_destroy: true
+  accepts_nested_attributes_for :goals, allow_destroy: true
+
   validates :name, presence: true
 end

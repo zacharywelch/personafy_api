@@ -22,6 +22,9 @@ describe Persona do
   it { should respond_to(:behaviors) }
   it { should respond_to(:goals) }
 
+  it { should accept_nested_attributes_for(:behaviors).allow_destroy(true) }
+  it { should accept_nested_attributes_for(:goals).allow_destroy(true) }
+
   it { should be_valid }
 
   it { should validate_presence_of(:name) }
