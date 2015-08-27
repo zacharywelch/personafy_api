@@ -4,17 +4,44 @@ describe "Personas API" do
 
   describe "GET /personas" do
 
-    let(:json) { JSON.parse(response.body)["personas"] }
-
     before do
-      create_list :persona, 10
+      Persona.destroy_all
+      10.times do
+        persona = create(:persona)
+        create(:behavior, persona: persona)
+        create(:goal, persona: persona)
+      end
       get '/personas'
     end
 
-    it "returns personas" do
-      expect(response).to be_success
-      expect(json).to be_an(Array)
-      expect(json.length).to be 10
+    context "personas" do
+      let(:json) { JSON.parse(response.body)["personas"] }
+
+      it "returns personas" do
+        expect(response).to be_success
+        expect(json).to be_an(Array)
+        expect(json.length).to be 10
+      end
+    end
+
+    context "behaviors" do
+      let(:json) { JSON.parse(response.body)["behaviors"] }
+
+      it "returns behaviors" do
+        expect(response).to be_success
+        expect(json).to be_an(Array)
+        expect(json.length).to be 10
+      end
+    end
+
+    context "goals" do
+      let(:json) { JSON.parse(response.body)["goals"] }
+
+      it "returns goals" do
+        expect(response).to be_success
+        expect(json).to be_an(Array)
+        expect(json.length).to be 10
+      end
     end
   end
 
