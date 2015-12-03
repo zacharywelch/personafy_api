@@ -23,29 +23,9 @@ describe "Personas API" do
         expect(json.length).to be 10
       end
     end
-
-    context "behaviors" do
-      let(:json) { JSON.parse(response.body)["behaviors"] }
-
-      it "returns behaviors" do
-        expect(response).to be_success
-        expect(json).to be_an(Array)
-        expect(json.length).to be 10
-      end
-    end
-
-    context "goals" do
-      let(:json) { JSON.parse(response.body)["goals"] }
-
-      it "returns goals" do
-        expect(response).to be_success
-        expect(json).to be_an(Array)
-        expect(json.length).to be 10
-      end
-    end
   end
 
-  it_has_behavior "pagination", "/personas", :persona
+  #it_has_behavior "pagination", "/personas", :persona
 
   describe "GET /personas/:id" do
     context "success" do
@@ -89,24 +69,19 @@ describe "Personas API" do
           expect(response).to be_success
           expect(json["photo_url"]).to eq "img.jpg"
         end
-
-        it "returns persona with behavior_ids" do
-          expect(response).to be_success
-          expect(json["behavior_ids"]).to match_array [behavior.id]
-        end
-
-        it "returns persona with goal_ids" do
-          expect(response).to be_success
-          expect(json["goal_ids"]).to match_array [goal.id]
-        end
       end
 
       context "behaviors" do
-        let(:json) { JSON.parse(response.body)["behaviors"] }
+        let(:json) { JSON.parse(response.body)["persona"]["behaviors_attributes"] }
+
+        it "returns array of behaviors" do
+          expect(response).to be_success
+          expect(json).to be_an(Array)
+        end
 
         it "returns related behavior with id" do
           expect(response).to be_success
-          expect(json[0]["id"]).to eq goal.id
+          expect(json[0]["id"]).to eq behavior.id
         end
 
         it "returns related behavior with description" do
@@ -116,7 +91,12 @@ describe "Personas API" do
       end
 
       context "goals" do
-        let(:json) { JSON.parse(response.body)["goals"] }
+        let(:json) { JSON.parse(response.body)["persona"]["goals_attributes"] }
+
+        it "returns array of goals" do
+          expect(response).to be_success
+          expect(json).to be_an(Array)
+        end
 
         it "returns related goals with id" do
           expect(response).to be_success
@@ -165,8 +145,8 @@ describe "Personas API" do
       expect(json["name"]).to eq "Foo"
       expect(json["description"]).to eq "Lorem ipsum"
       expect(json["photo_url"]).to eq "img.jpg"
-      expect(json["behavior_ids"].length).to be 2
-      expect(json["goal_ids"].length).to be 2
+      expect(json["behaviors_attributes"].length).to be 2
+      expect(json["goals_attributes"].length).to be 2
     end
   end
 
@@ -203,7 +183,7 @@ describe "Personas API" do
     end
 
     context "goals" do
-      let(:json) { JSON.parse(response.body)["goals"] }
+      let(:json) { JSON.parse(response.body)["persona"]["goals_attributes"] }
 
       context "update" do
         let(:params) do
@@ -252,7 +232,7 @@ describe "Personas API" do
     end
 
     context "behaviors" do
-      let(:json) { JSON.parse(response.body)["behaviors"] }
+      let(:json) { JSON.parse(response.body)["persona"]["behaviors_attributes"] }
 
       context "update" do
         let(:params) do
