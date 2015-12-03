@@ -43,7 +43,7 @@ class PersonasController < ApplicationController
       params.require(:persona)
         .permit(:name,
                 :description,
-                :photo_url,
+                :avatar,
                 :color,
                 behaviors_attributes: [:id, :description, :_destroy],
                 goals_attributes: [:id, :description, :_destroy])

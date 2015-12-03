@@ -5,9 +5,10 @@
 #  id          :integer          not null, primary key
 #  name        :string
 #  description :string
-#  photo_url   :string
+#  avatar      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  color       :string
 #
 
 require 'rails_helper'
@@ -18,7 +19,7 @@ describe Persona do
 
   it { should respond_to(:name) }
   it { should respond_to(:description) }
-  it { should respond_to(:photo_url) }
+  it { should respond_to(:avatar) }
   it { should respond_to(:behaviors) }
   it { should respond_to(:goals) }
 
@@ -28,6 +29,11 @@ describe Persona do
   it { should be_valid }
 
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:avatar) }
+  it { should validate_inclusion_of(:avatar).in_array(%w(batman bloo chowder dexter finn gumball
+                                                         hero kai pokemon rigby steven tom totaldrama
+                                                         ben10 chima clarence ed jtest mordecai
+                                                         powerpuff robin toothless)) }
   it { should validate_presence_of(:color) }
   it { should validate_inclusion_of(:color).in_array(%w(dark blue denim navy turquoise navy-dark
                                                         teal yellow green purple red orange)) }
