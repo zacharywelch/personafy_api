@@ -1,6 +1,6 @@
 json.persona do
-  json.extract! @persona, :id, :name, :description, :photo_url, :created_at, :updated_at
-  
+  json.extract! @persona, :id, :name, :description, :photo_url, :color, :created_at, :updated_at
+
   json.behaviors_attributes @persona.behaviors do |behavior|
     json.extract! behavior, :id, :description
   end

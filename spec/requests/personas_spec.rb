@@ -32,7 +32,8 @@ describe "Personas API" do
       let(:persona) do
         create :persona, name: "Foo",
           description: "Lorem ipsum",
-          photo_url: "img.jpg"
+          photo_url: "img.jpg",
+          color: "denim"
       end
       let!(:goal) do
         create :goal, description: "Goal",
@@ -68,6 +69,11 @@ describe "Personas API" do
         it "returns persona with photo_url" do
           expect(response).to be_success
           expect(json["photo_url"]).to eq "img.jpg"
+        end
+
+        it "returns persona with color" do
+          expect(response).to be_success
+          expect(json["color"]).to eq "denim"
         end
       end
 
@@ -128,6 +134,7 @@ describe "Personas API" do
           name: "Foo",
           description: "Lorem ipsum",
           photo_url: "img.jpg",
+          color: "denim",
           behaviors_attributes: [
             { description: "Behavior 1" },
             { description: "Behavior 2" }
@@ -145,6 +152,7 @@ describe "Personas API" do
       expect(json["name"]).to eq "Foo"
       expect(json["description"]).to eq "Lorem ipsum"
       expect(json["photo_url"]).to eq "img.jpg"
+      expect(json["color"]).to eq "denim"
       expect(json["behaviors_attributes"].length).to be 2
       expect(json["goals_attributes"].length).to be 2
     end

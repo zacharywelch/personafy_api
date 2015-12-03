@@ -1,6 +1,6 @@
 json.personas do
   json.array!(@personas) do |persona|
-    json.extract! persona, :id, :name, :description, :photo_url
+    json.extract! persona, :id, :name, :description, :photo_url, :color
     json.url persona_url(persona, format: :json)
 
     json.behaviors_attributes persona.behaviors do |behavior|

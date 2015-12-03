@@ -28,4 +28,7 @@ describe Persona do
   it { should be_valid }
 
   it { should validate_presence_of(:name) }
+  it { should validate_presence_of(:color) }
+  it { should validate_inclusion_of(:color).in_array(%w(dark blue denim navy turquoise navy-dark
+                                                        teal yellow green purple red orange)) }
 end

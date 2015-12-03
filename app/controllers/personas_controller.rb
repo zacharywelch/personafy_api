@@ -44,6 +44,7 @@ class PersonasController < ApplicationController
         .permit(:name,
                 :description,
                 :photo_url,
+                :color,
                 behaviors_attributes: [:id, :description, :_destroy],
                 goals_attributes: [:id, :description, :_destroy])
     end
