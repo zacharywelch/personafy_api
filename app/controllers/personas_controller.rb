@@ -11,7 +11,7 @@ class PersonasController < ApplicationController
   end
 
   def create
-    @persona = Persona.new(persona_params)
+    @persona = Persona.new(persona_params.merge(user_id: current_resource_owner.id))
     @persona.save
     respond_with(@persona)
   end

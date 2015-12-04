@@ -21,6 +21,7 @@ class Persona < ActiveRecord::Base
 
   has_many :behaviors
   has_many :goals
+  belongs_to :user
 
   accepts_nested_attributes_for :behaviors, allow_destroy: true
   accepts_nested_attributes_for :goals, allow_destroy: true
@@ -28,4 +29,5 @@ class Persona < ActiveRecord::Base
   validates :name,   presence: true
   validates :avatar, presence: true, inclusion: { in: AVATARS }
   validates :color,  presence: true, inclusion: { in: COLORS }
+  validates :user,   presence: true
 end
