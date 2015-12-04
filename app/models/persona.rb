@@ -16,10 +16,8 @@ class Persona < ActiveRecord::Base
   COLORS = %w(dark blue denim navy turquoise navy-dark
               teal yellow green purple red orange)
 
-  AVATARS = %w(batman bloo chowder dexter finn gumball
-               hero kai pokemon rigby steven tom totaldrama
-               ben10 chima clarence ed jtest mordecai
-               powerpuff robin toothless)
+  AVATARS = %w(batman fizzy ben10 cyberchase adventuretime bloo fusionfall 
+               gumball wordgirl rigby pokemon super-why)
 
   has_many :behaviors
   has_many :goals

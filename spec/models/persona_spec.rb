@@ -30,10 +30,10 @@ describe Persona do
 
   it { should validate_presence_of(:name) }
   it { should validate_presence_of(:avatar) }
-  it { should validate_inclusion_of(:avatar).in_array(%w(batman bloo chowder dexter finn gumball
-                                                         hero kai pokemon rigby steven tom totaldrama
-                                                         ben10 chima clarence ed jtest mordecai
-                                                         powerpuff robin toothless)) }
+  it { should validate_inclusion_of(:avatar).in_array(%w(batman fizzy ben10 cyberchase 
+                                                         adventuretime bloo fusionfall 
+                                                         gumball wordgirl rigby pokemon 
+                                                         super-why)) }
   it { should validate_presence_of(:color) }
   it { should validate_inclusion_of(:color).in_array(%w(dark blue denim navy turquoise navy-dark
                                                         teal yellow green purple red orange)) }
