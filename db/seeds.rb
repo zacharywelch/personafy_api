@@ -1,7 +1,7 @@
 user = User.first_or_create!(
   name: 'John',
   email: 'john@test.com',
-  password: 'admin'
+  password: 'admin1234'
 )
 
 persona = Persona.first_or_create!(

@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   before_save :encrypt_password
 
-  validates :password, presence: { on: :create }
+  validates :password, presence: { on: :create }, length: { minimum: 8 }
   validates :email,    presence: true, uniqueness: true
   validates :name,     presence: true
 
