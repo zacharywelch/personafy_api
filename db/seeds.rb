@@ -1,18 +1,52 @@
-user = User.first_or_create!(
-  name: 'John',
-  email: 'john@test.com',
-  password: 'admin1234'
+user = User.create!(
+  name: 'Dan Cederholm',
+  email: 'dan@gmail.com',
+  password: 'password'
 )
 
-persona = Persona.first_or_create!(
-  name: "Anye",
-  description: "Ember Padawan",
-  avatar: "batman",
-  color: "denim",
-  user: user
-)
+seeds = [{ avatar: 'fizzy',      
+           color: 'denim' }, 
+         { avatar: 'batman',     
+           color: 'navy' },
+         { avatar: 'super-why',  
+           color: 'blue' },
+         { avatar: 'rigby',     
+           color: 'purple' },
+         { avatar: 'wordgirl',     
+           color: 'turquoise' },
+         { avatar: 'pokemon',     
+           color: 'navy-dark' },
+         { avatar: 'gumball',     
+           color: 'navy' },
+         { avatar: 'cyberchase',
+           color: 'red' },
+         { avatar: 'fizzy',     
+           color: 'teal' },
+         { avatar: 'wordgirl',     
+           color: 'orange' },
+         { avatar: 'ben10',     
+           color: 'navy-dark' },
+         { avatar: 'fizzy',     
+           color: 'purple' }]
 
-10.times do
-  persona.behaviors.first_or_create!(description: Faker::Lorem.sentence)
-  persona.goals.first_or_create!(description: Faker::Lorem.sentence)
+seeds.each do |seed|
+  persona = Persona.create!(
+    name: 'Pervy Sage',
+    description: "\"I don't mean to brag, I don't mean to boast, but I have some hummus for these mini toast!\"",
+    avatar: seed[:avatar],
+    color: seed[:color],
+    user: user
+  )
+
+  3.times do 
+    persona.behaviors.create!(
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    )
+  end
+
+  3.times do 
+    persona.goals.create!(
+      description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+    )
+  end
 end
