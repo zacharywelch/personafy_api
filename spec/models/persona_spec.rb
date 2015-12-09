@@ -4,6 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
+#  role        :string
 #  description :string
 #  avatar      :string
 #  created_at  :datetime         not null
@@ -19,6 +20,7 @@ describe Persona do
   subject(:persona) { create :persona }
 
   it { should respond_to(:name) }
+  it { should respond_to(:role) }
   it { should respond_to(:description) }
   it { should respond_to(:avatar) }
   it { should respond_to(:behaviors) }

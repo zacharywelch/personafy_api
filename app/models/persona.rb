@@ -4,6 +4,7 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
+#  role        :string
 #  description :string
 #  avatar      :string
 #  created_at  :datetime         not null

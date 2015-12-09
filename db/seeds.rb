@@ -8,6 +8,7 @@ user = User.create!(
 
 pete = Persona.create!(
   name: 'Pete',
+  role: 'Chief Financial Officer',
   description: "\"In my humble opinion, that's a prophetic statement.\"",
   avatar: 'fizzy',
   color: 'denim',
@@ -40,6 +41,7 @@ pete.goals.create!(
 
 bruce = Persona.create!(
   name: "Bruce",
+  role: 'The Dark Knight',
   description: "\"It's not who I am underneath, but what I do that defines me.\"",
   avatar: 'batman',
   color: 'navy',
@@ -94,6 +96,7 @@ seeds = [{ avatar: 'super-why',
 seeds.each do |seed|
   persona = Persona.create!(
     name: Faker::Name.first_name,
+    role: ['Casual User', 'Business User', 'Power User'].sample,
     description: "\"#{Faker::Hipster.sentence}\"",
     avatar: seed[:avatar],
     color: seed[:color],

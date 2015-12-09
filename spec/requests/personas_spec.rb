@@ -2,16 +2,17 @@ require 'rails_helper'
 
 describe "Personas API" do
 
+  include_context :authorization
+  
   describe "GET /personas" do
 
     before do
-      Persona.destroy_all
       10.times do
         persona = create(:persona)
         create(:behavior, persona: persona)
         create(:goal, persona: persona)
       end
-      get '/personas'
+      get '/personas', {}, auth_token
     end
 
     context "personas" do
@@ -31,6 +32,7 @@ describe "Personas API" do
     context "success" do
       let(:persona) do
         create :persona, name: "Foo",
+          role: "Bar",
           description: "Lorem ipsum",
           avatar: "batman",
           color: "denim"
@@ -45,7 +47,7 @@ describe "Personas API" do
       end
 
       before do
-        get "/personas/#{persona.id}"
+        get "/personas/#{persona.id}", {}, auth_token
       end
 
       context "persona attributes" do
@@ -59,6 +61,11 @@ describe "Personas API" do
         it "returns persona with name" do
           expect(response).to be_success
           expect(json["name"]).to eq "Foo"
+        end
+
+        it "returns persona with role" do
+          expect(response).to be_success
+          expect(json["role"]).to eq "Bar"
         end
 
         it "returns persona with description" do
@@ -118,7 +125,7 @@ describe "Personas API" do
 
     context "missing" do
       it "returns 404 for persona that doesn't exist" do
-        get '/personas/missing'
+        get '/personas/missing', {}, auth_token
         expect(response).to be_missing
       end
     end
@@ -130,26 +137,31 @@ describe "Personas API" do
 
     before do
       post '/personas',
-        persona: {
-          name: "Foo",
-          description: "Lorem ipsum",
-          avatar: "batman",
-          color: "denim",
-          behaviors_attributes: [
-            { description: "Behavior 1" },
-            { description: "Behavior 2" }
-          ],
-          goals_attributes: [
-            { description: "Goal 1" },
-            { description: "Goal 2" }
-          ]
-        }
+        { 
+          persona: {
+            name: "Foo",
+            role: "Bar",
+            description: "Lorem ipsum",
+            avatar: "batman",
+            color: "denim",
+            behaviors_attributes: [
+              { description: "Behavior 1" },
+              { description: "Behavior 2" }
+            ],
+            goals_attributes: [
+              { description: "Goal 1" },
+              { description: "Goal 2" }
+            ]
+          }
+        },
+        auth_token
     end
 
     it "creates a persona" do
       expect(response).to be_created
       expect(json).to include "id"
       expect(json["name"]).to eq "Foo"
+      expect(json["role"]).to eq "Bar"
       expect(json["description"]).to eq "Lorem ipsum"
       expect(json["avatar"]).to eq "batman"
       expect(json["color"]).to eq "denim"
@@ -161,7 +173,7 @@ describe "Personas API" do
   describe "PUT /personas/:id" do
     let(:persona) do
       create :persona, name: "Foo",
-        description: "Lorem ipsum",
+        description: "Lorem ip0sum",
         avatar: "batman"
     end
     let!(:goal) do
@@ -174,7 +186,7 @@ describe "Personas API" do
     end
 
     before do
-      put "/personas/#{persona.id}", params
+      put "/personas/#{persona.id}", params, auth_token
     end
 
     context "persona" do
@@ -295,12 +307,12 @@ describe "Personas API" do
     let(:persona) { create :persona }
 
     before do
-      delete "/personas/#{persona.id}"
+      delete "/personas/#{persona.id}", {}, auth_token
     end
 
     it "deletes an persona" do
       expect(response).to be_success
-      get "/personas/#{persona.id}"
+      get "/personas/#{persona.id}", {}, auth_token
       expect(response).to be_missing
     end
   end

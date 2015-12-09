@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151204212756) do
+ActiveRecord::Schema.define(version: 20151209161201) do
 
   create_table "behaviors", force: :cascade do |t|
     t.string   "description"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20151204212756) do
     t.datetime "updated_at",  null: false
     t.string   "color"
     t.integer  "user_id"
+    t.string   "role"
   end
 
   add_index "personas", ["user_id"], name: "index_personas_on_user_id"

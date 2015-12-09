@@ -10,6 +10,7 @@
 #  updated_at  :datetime         not null
 #  color       :string
 #  user_id     :integer
+#  role        :string
 #
 
 FactoryGirl.define do

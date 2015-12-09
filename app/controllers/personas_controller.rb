@@ -36,12 +36,13 @@ class PersonasController < ApplicationController
     end
 
     def filter_params
-      params.permit(:name, :description, :photo_url)
+      params.permit(:name, :role, :description, :photo_url)
     end
 
     def persona_params
       params.require(:persona)
         .permit(:name,
+                :role,
                 :description,
                 :avatar,
                 :color,
