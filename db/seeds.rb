@@ -1,9 +1,3 @@
-user = User.create!(
-  name: 'Dan Cederholm',
-  email: 'dan@gmail.com',
-  password: 'password'
-)
-
 # Pete "The New Breed"
 
 pete = Persona.create!(
@@ -11,8 +5,7 @@ pete = Persona.create!(
   role: 'Chief Financial Officer',
   description: "\"In my humble opinion, that's a prophetic statement.\"",
   avatar: 'fizzy',
-  color: 'denim',
-  user: user
+  color: 'denim'
 )
 
 pete.behaviors.create!(
@@ -44,8 +37,7 @@ bruce = Persona.create!(
   role: 'The Dark Knight',
   description: "\"It's not who I am underneath, but what I do that defines me.\"",
   avatar: 'batman',
-  color: 'navy',
-  user: user
+  color: 'navy'
 )
 
 bruce.behaviors.create!(
@@ -99,8 +91,7 @@ seeds.each do |seed|
     role: ['Casual User', 'Business User', 'Power User'].sample,
     description: "\"#{Faker::Hipster.sentence}\"",
     avatar: seed[:avatar],
-    color: seed[:color],
-    user: user
+    color: seed[:color]
   )
 
   3.times do 

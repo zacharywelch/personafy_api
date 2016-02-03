@@ -4,13 +4,12 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
-#  role        :string
 #  description :string
 #  avatar      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  color       :string
-#  user_id     :integer
+#  role        :string
 #
 
 require 'rails_helper'
