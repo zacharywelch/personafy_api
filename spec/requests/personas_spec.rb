@@ -2,8 +2,6 @@ require 'rails_helper'
 
 describe "Personas API" do
 
-  include_context :authorization
-  
   describe "GET /personas" do
 
     before do
@@ -12,7 +10,7 @@ describe "Personas API" do
         create(:behavior, persona: persona)
         create(:goal, persona: persona)
       end
-      get '/personas', {}, auth_token
+      get '/personas'
     end
 
     context "personas" do
@@ -47,7 +45,7 @@ describe "Personas API" do
       end
 
       before do
-        get "/personas/#{persona.id}", {}, auth_token
+        get "/personas/#{persona.id}"
       end
 
       context "persona attributes" do
@@ -125,7 +123,7 @@ describe "Personas API" do
 
     context "missing" do
       it "returns 404 for persona that doesn't exist" do
-        get '/personas/missing', {}, auth_token
+        get '/personas/missing'
         expect(response).to be_missing
       end
     end
@@ -153,8 +151,7 @@ describe "Personas API" do
               { description: "Goal 2" }
             ]
           }
-        },
-        auth_token
+        }
     end
 
     it "creates a persona" do
@@ -186,7 +183,7 @@ describe "Personas API" do
     end
 
     before do
-      put "/personas/#{persona.id}", params, auth_token
+      put "/personas/#{persona.id}", params
     end
 
     context "persona" do
@@ -307,12 +304,12 @@ describe "Personas API" do
     let(:persona) { create :persona }
 
     before do
-      delete "/personas/#{persona.id}", {}, auth_token
+      delete "/personas/#{persona.id}"
     end
 
     it "deletes an persona" do
       expect(response).to be_success
-      get "/personas/#{persona.id}", {}, auth_token
+      get "/personas/#{persona.id}"
       expect(response).to be_missing
     end
   end

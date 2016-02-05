@@ -4,13 +4,12 @@
 #
 #  id          :integer          not null, primary key
 #  name        :string
-#  role        :string
 #  description :string
 #  avatar      :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  color       :string
-#  user_id     :integer
+#  role        :string
 #
 
 class Persona < ActiveRecord::Base
@@ -31,5 +30,4 @@ class Persona < ActiveRecord::Base
   validates :name,   presence: true
   validates :avatar, presence: true, inclusion: { in: AVATARS }
   validates :color,  presence: true, inclusion: { in: COLORS }
-  validates :user,   presence: true
 end

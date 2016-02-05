@@ -11,9 +11,6 @@ gem 'rails_api_sortable', git: 'git@cagit.careerbuilder.com:zwelch/rails_api_sor
 gem 'faker'
 gem 'kaminari'
 gem 'newrelic_rpm'
-gem 'doorkeeper'
-gem 'bcrypt', :require => 'bcrypt'
-
 
 group :development do
   gem 'spring'
