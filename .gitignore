@@ -15,3 +15,8 @@
 /log/*
 !/log/.keep
 /tmp
+
+.ruby-version
+config/secrets.yml
+config/newrelic.yml
+config/database.yml

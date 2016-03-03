@@ -11,6 +11,9 @@ gem 'rails_api_sortable', git: 'git@cagit.careerbuilder.com:zwelch/rails_api_sor
 gem 'faker'
 gem 'kaminari'
 gem 'newrelic_rpm'
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rvm'
 
 group :development do
   gem 'spring'
