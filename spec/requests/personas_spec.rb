@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "Personas API" do
+describe "Personafy API" do
 
   describe "GET /personas" do
 
