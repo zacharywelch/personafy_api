@@ -14,6 +14,7 @@ gem 'capistrano', '~> 3.1.0'
 gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rvm'
 gem 'pg'
+gem 'rack-cors'
 
 group :development do
   gem 'spring'
